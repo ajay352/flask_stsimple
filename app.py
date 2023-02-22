@@ -1,7 +1,7 @@
 import stripe
 from flask import Flask, redirect,render_template
 
-app = Flask(__name__,static_folder="public")
+app = Flask(__name__,static_folder="templates")
 
 stripe.api_key = "sk_test_51MduieSErZbH7P9I7Rkfuk3bPwqvGn6jpB9s1LYKlZq2bDDgvoNsSBjdDNRnVW0QLZIELQVdST3kjfNzUigr3XSn00nRFw0Frp"
 
@@ -21,7 +21,7 @@ def create_checkout_session():
             cancel_url = YOUR_DOMAIN + "/cancel.html"
         )
 
-    return render_template('checkout.html')
+    return redirect(checkout_session.url,code=303)
 
     
     
@@ -31,4 +31,4 @@ def create_checkout_session():
     
 
 if __name__ == "__main__":
-    app.run(debug=True ,port=8080,use_reloader=False)
+    app.run(debug=True ,port=8088,use_reloader=False)
